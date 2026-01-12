@@ -11,6 +11,8 @@ import { updateCompetitionStatus, calculateRankings, deleteCompetition } from "@
 import Image from "next/image";
 import { format } from "date-fns";
 
+export const dynamic = 'force-dynamic';
+
 async function getCompetition(id: string) {
     const competition = await prisma.competition.findUnique({
         where: { id },
