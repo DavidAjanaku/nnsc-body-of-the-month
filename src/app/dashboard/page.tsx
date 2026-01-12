@@ -24,6 +24,8 @@ async function getUserData(userId: string) {
     return user;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardPage() {
     const cookieStore = await cookies();
     const userId = cookieStore.get("userId")?.value;

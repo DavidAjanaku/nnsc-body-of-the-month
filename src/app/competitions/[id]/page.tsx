@@ -33,6 +33,8 @@ async function getCompetition(id: string) {
     return competition;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function CompetitionDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const competition = await getCompetition(id);

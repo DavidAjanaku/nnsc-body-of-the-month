@@ -1,6 +1,8 @@
 import { NavbarWrapper } from "@/components/layout/NavbarWrapper";
 import { RegisterForm } from "@/components/auth/RegisterForm";
 
+export const dynamic = 'force-dynamic';
+
 export default function RegisterPage() {
     return (
         <main className="min-h-screen bg-background pb-20">

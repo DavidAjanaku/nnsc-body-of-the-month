@@ -17,6 +17,8 @@ async function getMeasurements(userId: string) {
     return measurements;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function MeasurementsPage() {
     const cookieStore = await cookies();
     const userId = cookieStore.get("userId")?.value;

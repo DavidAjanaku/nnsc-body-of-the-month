@@ -12,6 +12,8 @@ async function getWorkouts() {
     return workouts;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function WorkoutsPage() {
     const workouts = await getWorkouts();
 

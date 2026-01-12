@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+export const dynamic = 'force-dynamic';
+
 export default async function NewMeasurementPage() {
     // Check if user is logged in
     const cookieStore = await cookies();

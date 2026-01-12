@@ -7,6 +7,8 @@ import Link from "next/link";
 import { Trophy, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+export const dynamic = 'force-dynamic';
+
 export default async function CompetitionsPage() {
     const competitions = await getUpcomingCompetitions();
     const upcomingCompetition = competitions[0];

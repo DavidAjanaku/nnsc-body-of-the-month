@@ -64,6 +64,8 @@ async function getWinners() {
     return winners;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function HallOfFamePage() {
     const winners = await getWinners();
 
