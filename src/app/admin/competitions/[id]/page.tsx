@@ -12,6 +12,8 @@ import Image from "next/image";
 import { format } from "date-fns";
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 async function getCompetition(id: string) {
     const competition = await prisma.competition.findUnique({
@@ -63,19 +65,19 @@ export default async function AdminCompetitionDetailPage({
     const members = await getAllMembers();
 
     // Get unique categories
-    const categories = [...new Set(competition.entries.map((e) => e.category))];
+    const categories = [...new Set(competition.entries.map((e: any) => e.category as string))] as string[];
 
     // Group entries by category
     const leaderboards: Record<string, any[]> = {};
-    categories.forEach((category) => {
+    categories.forEach((category: string) => {
         leaderboards[category] = competition.entries
-            .filter((e) => e.category === category)
-            .sort((a, b) => b.score - a.score);
+            .filter((e: any) => e.category === category)
+            .sort((a: any, b: any) => b.score - a.score);
     });
 
     // Calculate overall standings
     const userRankSums: Record<string, { user: any; sum: number; categories: number }> = {};
-    competition.entries.forEach((entry) => {
+    competition.entries.forEach((entry: any) => {
         if (!userRankSums[entry.userId]) {
             userRankSums[entry.userId] = {
                 user: entry.user,
@@ -142,7 +144,7 @@ export default async function AdminCompetitionDetailPage({
                                 Total Participants
                             </h3>
                             <p className="text-3xl font-bold">
-                                {[...new Set(competition.entries.map(e => e.userId))].length}
+                                {[...new Set(competition.entries.map((e: any) => e.userId))].length}
                             </p>
                         </CardContent>
                     </Card>
@@ -277,7 +279,7 @@ export default async function AdminCompetitionDetailPage({
                 <div className="space-y-6">
                     <h2 className="text-2xl font-bold">Category Leaderboards</h2>
                     {categories.length > 0 ? (
-                        categories.map((category) => (
+                        categories.map((category: string) => (
                             <Card key={category}>
                                 <CardHeader>
                                     <CardTitle>{category}</CardTitle>
@@ -293,7 +295,7 @@ export default async function AdminCompetitionDetailPage({
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {leaderboards[category].map((entry, index) => (
+                                                {leaderboards[category].map((entry: any, index: number) => (
                                                     <tr key={entry.id} className="border-b border-border last:border-0">
                                                         <td className="p-4">
                                                             <span className="text-lg font-bold">

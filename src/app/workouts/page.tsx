@@ -35,7 +35,7 @@ export default async function WorkoutsPage() {
 
                 {workouts.length > 0 ? (
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {workouts.map((workout) => (
+                        {workouts.map((workout: any) => (
                             <Card key={workout.id} className="group overflow-hidden bg-card/30 border-white/5 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
                                 <CardContent className="p-0">
                                     <div className="relative h-56 w-full overflow-hidden">

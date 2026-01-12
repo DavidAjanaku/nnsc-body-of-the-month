@@ -30,10 +30,10 @@ async function getWinners() {
     });
 
     // Calculate winners for each competition
-    const winners = competitions.map((competition) => {
+    const winners = competitions.map((competition: any) => {
         const userRankSums: Record<string, { user: any; sum: number; categories: number }> = {};
 
-        competition.entries.forEach((entry) => {
+        competition.entries.forEach((entry: any) => {
             if (!userRankSums[entry.userId]) {
                 userRankSums[entry.userId] = {
                     user: entry.user,
@@ -90,7 +90,7 @@ export default async function HallOfFamePage() {
 
                 {winners.length > 0 ? (
                     <div className="max-w-5xl mx-auto space-y-24">
-                        {winners.map(({ competition, maleWinner, femaleWinner }) => (
+                        {winners.map(({ competition, maleWinner, femaleWinner }: any) => (
                             <div key={competition.id} className="relative">
                                 {/* Decorative Year/Month Background */}
                                 <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-9xl font-black text-white/[0.02] select-none whitespace-nowrap z-0 uppercase italic">

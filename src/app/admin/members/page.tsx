@@ -49,7 +49,7 @@ export default async function MembersPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {members.map((member) => {
+                    {members.map((member: any) => {
                         const latestMeasurement = member.measurements[0];
 
                         return (

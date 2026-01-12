@@ -41,22 +41,22 @@ export default async function CompetitionDetailPage({ params }: { params: Promis
     const user = await getCurrentUser();
 
     // Check if user is registered
-    const isRegistered = user ? competition.entries.some(e => e.userId === user.id) : false;
+    const isRegistered = user ? competition.entries.some((e: any) => e.userId === user.id) : false;
 
     // Group entries by category
-    const categories = [...new Set(competition.entries.map((e) => e.category))];
+    const categories = [...new Set(competition.entries.map((e: any) => e.category as string))] as string[];
     const leaderboards: Record<string, any[]> = {};
 
-    categories.forEach((category) => {
+    categories.forEach((category: string) => {
         leaderboards[category] = competition.entries
-            .filter((e) => e.category === category)
-            .sort((a, b) => b.score - a.score);
+            .filter((e: any) => e.category === category)
+            .sort((a: any, b: any) => b.score - a.score);
     });
 
     // Get overall winners (users with lowest sum of ranks across all categories)
     const userRankSums: Record<string, { user: any; sum: number; categories: number }> = {};
 
-    competition.entries.forEach((entry) => {
+    competition.entries.forEach((entry: any) => {
         if (!userRankSums[entry.userId]) {
             userRankSums[entry.userId] = {
                 user: entry.user,

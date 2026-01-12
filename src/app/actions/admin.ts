@@ -133,13 +133,13 @@ export async function calculateRankings(competitionId: string) {
         });
 
         // Group by category
-        const categories = [...new Set(entries.map((e) => e.category))];
+        const categories = [...new Set(entries.map((e: { category: string }) => e.category))];
 
         for (const category of categories) {
-            const categoryEntries = entries.filter((e) => e.category === category);
+            const categoryEntries = entries.filter((e: { category: string }) => e.category === category);
 
             // Assign ranks
-            categoryEntries.forEach((entry, index) => {
+            categoryEntries.forEach((entry: { rank?: number | null }, index: number) => {
                 entry.rank = index + 1;
             });
 

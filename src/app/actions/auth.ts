@@ -59,7 +59,7 @@ export async function registerUser(prevState: any, formData: FormData) {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create User and Initial Measurement
-        const newUser = await prisma.$transaction(async (tx) => {
+        const newUser = await prisma.$transaction(async (tx: Omit<PrismaClient, "$connect" | "$disconnect" | "$on" | "$transaction" | "$use">) => {
             const user = await tx.user.create({
                 data: {
                     name,

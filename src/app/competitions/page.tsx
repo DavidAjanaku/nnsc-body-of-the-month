@@ -44,7 +44,7 @@ export default async function CompetitionsPage() {
                                 <div className="mb-8">
                                     <p className="text-lg text-muted-foreground mb-2 flex items-center gap-2">
                                         <span className="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                                        <strong>{([...new Set(upcomingCompetition.entries.map((e) => e.userId))].length)}</strong> Warriors Registered
+                                        <strong>{([...new Set(upcomingCompetition.entries.map((e: any) => e.userId))].length)}</strong> Warriors Registered
                                     </p>
                                 </div>
                                 <Link href={`/competitions/${upcomingCompetition.id}`}>
@@ -107,7 +107,7 @@ export default async function CompetitionsPage() {
                     <div className="mt-20">
                         <h2 className="text-3xl font-bold uppercase tracking-tight mb-8 pl-4 border-l-4 border-primary">Legacy Events</h2>
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            {competitions.map((competition) => (
+                            {competitions.map((competition: any) => (
                                 <Card key={competition.id} className="group bg-card/30 hover:bg-card/50 border-white/5 hover:border-primary/30 transition-all duration-300">
                                     <CardHeader>
                                         <CardTitle className="text-xl font-bold uppercase italic tracking-tighter group-hover:text-primary transition-colors">{competition.name}</CardTitle>

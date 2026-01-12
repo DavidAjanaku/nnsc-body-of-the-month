@@ -60,7 +60,7 @@ export default async function CompetitionsPage() {
                 </div>
 
                 <div className="space-y-4">
-                    {competitions.map((competition) => (
+                    {competitions.map((competition: any) => (
                         <Card key={competition.id} className="hover:border-primary/50 transition-colors">
                             <CardHeader>
                                 <div className="flex items-center justify-between">
@@ -89,7 +89,7 @@ export default async function CompetitionsPage() {
                                     <div className="text-sm">
                                         <span className="text-muted-foreground">Participants: </span>
                                         <span className="font-semibold">
-                                            {[...new Set(competition.entries.map((e) => e.userId))].length}
+                                            {[...new Set(competition.entries.map((e: any) => e.userId))].length}
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-2">

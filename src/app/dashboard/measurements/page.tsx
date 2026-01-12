@@ -77,7 +77,7 @@ export default async function MeasurementsPage() {
                     </div>
                 ) : (
                     <div className="space-y-6">
-                        {measurements.map((measurement, index) => {
+                        {measurements.map((measurement: any, index: number) => {
                             const prevMeasurement = measurements[index + 1];
                             const weightChange = prevMeasurement
                                 ? ((measurement.weight || 0) - (prevMeasurement.weight || 0))

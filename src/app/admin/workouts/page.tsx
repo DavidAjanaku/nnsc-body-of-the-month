@@ -47,7 +47,7 @@ export default async function AdminWorkoutsPage() {
 
                 {workouts.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {workouts.map((workout) => (
+                        {workouts.map((workout: any) => (
                             <Card key={workout.id} className="overflow-hidden">
                                 <CardContent className="p-0">
                                     {workout.imageUrl ? (
