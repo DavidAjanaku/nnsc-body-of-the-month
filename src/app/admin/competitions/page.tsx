@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { format } from "date-fns";
 import { deleteCompetition } from "@/app/actions/admin";
 import { redirect } from "next/navigation";
+export const dynamic = 'force-dynamic';
+
 
 async function getAllCompetitions() {
     const competitions = await prisma.competition.findMany({

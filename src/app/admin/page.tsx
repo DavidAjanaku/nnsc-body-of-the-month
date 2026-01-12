@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Users, Trophy, Dumbbell, Calendar } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+export const dynamic = 'force-dynamic';
+
 
 async function getAdminStats() {
     const [totalMembers, totalCompetitions, totalWorkouts, upcomingCompetitions] = await Promise.all([

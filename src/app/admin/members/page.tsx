@@ -7,6 +7,8 @@ import { ArrowLeft } from "lucide-react";
 import { format } from "date-fns";
 import Image from "next/image";
 
+export const dynamic = 'force-dynamic';
+
 async function getAllMembers() {
     const members = await prisma.user.findMany({
         orderBy: { joinDate: "desc" },

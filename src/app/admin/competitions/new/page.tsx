@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { CompetitionForm } from "@/components/admin/CompetitionForm";
 
+export const dynamic = 'force-dynamic';
+
 export default async function NewCompetitionPage() {
     await requireAdmin();
 

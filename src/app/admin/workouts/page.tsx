@@ -8,6 +8,8 @@ import { Plus, Trash2, Dumbbell, ArrowLeft } from "lucide-react";
 import { deleteWorkout } from "@/app/actions/admin";
 import Image from "next/image";
 
+export const dynamic = 'force-dynamic';
+
 async function getWorkouts() {
     const workouts = await prisma.workout.findMany({
         orderBy: { createdAt: "desc" },
