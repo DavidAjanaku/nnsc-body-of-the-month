@@ -1,0 +1,86 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  password      String
+  role          String    @default("MEMBER")
+  gender        String?
+  avatarUrl     String?
+  joinDate      DateTime  @default(now())
+  goals         String?
+  
+  currentWeight Float?
+  trainingDuration String?
+
+  measurements  Measurement[]
+  competitionEntries CompetitionEntry[]
+  
+  @@map("users")
+}
+
+model Measurement {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      DateTime @default(now())
+  
+  weight    Float?
+  chest     Float?
+  arms      Float?
+  waist     Float?
+  thighs    Float?
+  neck      Float?
+  glutes    Float?
+  
+  photoUrl  String?
+
+  @@map("measurements")
+}
+
+model Competition {
+  id          String   @id @default(uuid())
+  name        String
+  date        DateTime
+  status      String   @default("UPCOMING")
+  
+  entries     CompetitionEntry[]
+
+  @@map("competitions")
+}
+
+model CompetitionEntry {
+  id            String      @id @default(uuid())
+  competitionId String
+  competition   Competition @relation(fields: [competitionId], references: [id], onDelete: Cascade)
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  category      String
+  score         Float  @default(0)
+  
+  rank          Int?
+
+  @@map("competition_entries")
+}
+
+model Workout {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  bodyPart    String
+  difficulty  String   @default("INTERMEDIATE")
+  content     String
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+
+  @@map("workouts")
+}
