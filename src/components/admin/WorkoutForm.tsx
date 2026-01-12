@@ -102,7 +102,7 @@ export function WorkoutForm() {
                     <div className="space-y-2">
                         <Label>Workout Image (Optional)</Label>
                         <ImageUpload
-                            onUploadComplete={(url) => setImageUrl(url)}
+                            onChange={(url) => setImageUrl(url)}
                         />
                         <input type="hidden" name="imageUrl" value={imageUrl} />
                     </div>

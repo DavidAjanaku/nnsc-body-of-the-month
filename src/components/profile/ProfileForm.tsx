@@ -45,8 +45,8 @@ export function ProfileForm({ user }: ProfileFormProps) {
                     <div className="space-y-2">
                         <Label>Profile Photo</Label>
                         <ImageUpload
-                            onUploadComplete={(url) => setAvatarUrl(url)}
-                            defaultImage={user.avatarUrl || undefined}
+                            onChange={(url) => setAvatarUrl(url)}
+                            value={user.avatarUrl || undefined}
                         />
                         <input type="hidden" name="avatarUrl" value={avatarUrl} />
                     </div>

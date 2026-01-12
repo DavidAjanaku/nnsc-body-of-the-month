@@ -247,10 +247,10 @@ export async function deleteWorkout(formData: FormData) {
         await prisma.workout.delete({
             where: { id: workoutId },
         });
-
-        return { success: true };
     } catch (error) {
         console.error(error);
-        return { success: false, message: "Failed to delete workout" };
+        throw new Error("Failed to delete workout");
     }
+
+    redirect("/admin/workouts");
 }

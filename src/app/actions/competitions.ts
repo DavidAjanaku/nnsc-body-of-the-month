@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { requireAuth } from "@/lib/auth";
 
-export async function registerForCompetition(competitionId: string, categories: string[]) {
+export async function registerForCompetition(competitionId: string, categories?: string[]) {
     const user = await requireAuth();
 
     try {
@@ -23,8 +23,15 @@ export async function registerForCompetition(competitionId: string, categories: 
             };
         }
 
+        // Default categories based on gender if not provided
+        const defaultCategories = user.gender === "FEMALE"
+            ? ["Bikini", "Wellness", "Figure"]
+            : ["Men's Physique", "Classic Physique", "Bodybuilding"];
+
+        const registrationCategories = categories && categories.length > 0 ? categories : defaultCategories;
+
         // Register for each category
-        for (const category of categories) {
+        for (const category of registrationCategories) {
             await prisma.competitionEntry.create({
                 data: {
                     competitionId,
