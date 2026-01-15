@@ -123,6 +123,7 @@ export async function loginUser(prevState: any, formData: FormData) {
 
     const { email, password } = validatedFields.data;
 
+    let redirectPath = "/dashboard";
     try {
         // Find user by email
         const user = await prisma.user.findUnique({
@@ -149,20 +150,23 @@ export async function loginUser(prevState: any, formData: FormData) {
 
         // Redirect based on role
         if (user.role === "ADMIN") {
-            redirect("/admin");
+            redirectPath = "/admin";
         } else {
-            redirect("/dashboard");
+            redirectPath = "/dashboard";
         }
 
     } catch (error) {
+        // If it's a redirect error, let it bubble up
+        if (error instanceof Error && error.message === "NEXT_REDIRECT") {
+            throw error;
+        }
         console.error(error);
         return {
             message: "An error occurred during login.",
         };
     }
 
-    // This line should never be reached, but TypeScript needs it
-    redirect("/dashboard");
+    redirect(redirectPath);
 }
 
 export async function logoutUser() {
